@@ -5,11 +5,27 @@ import { AppService } from './app.service';
 import { PrismaModule } from './core/database/prisma/prisma.module';
 import { DatabaseModule } from './core/database/database.module';
 import { CoreModule } from './core/core.module';
-import { UsersModule } from './modules/users/users.module';
+import { UsersModule } from './modules/users/users.module'; 
+import { LoggerModule } from './core/logger/logger.module';
+import { AllExceptionsFilter } from './common/filters/http-exception.filter';
+import { APP_FILTER } from '@nestjs/core';
 
 @Module({
-  imports: [ConfigModule.forRoot(), PrismaModule, DatabaseModule, CoreModule, UsersModule],
+  imports: [
+    ConfigModule.forRoot(),
+    LoggerModule,
+    PrismaModule,
+    DatabaseModule,
+    CoreModule,
+    UsersModule,
+  ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_FILTER,
+      useClass: AllExceptionsFilter,
+    }
+  ],
 })
 export class AppModule {}
