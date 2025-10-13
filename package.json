@@ -5,6 +5,7 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
+    "generate": "pnpm --filter @smart-notes/db prisma:generate",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
     "docker:dev": "docker-compose -f docker-compose.yml up"
