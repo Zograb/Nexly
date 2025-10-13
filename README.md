@@ -1,135 +1,176 @@
-# Turborepo starter
+# Smart Notes
 
-This Turborepo starter is maintained by the Turborepo core team.
+A full-stack note-taking application powered by AI and built with a modern monorepo architecture using Turborepo.
 
-## Using this example
+## Tech Stack
 
-Run the following command:
+### Frontend
+- **[Next.js 15](https://nextjs.org/)** - React framework with App Router and Turbopack
+- **[React 19](https://react.dev/)** - UI library
+- **TypeScript** - Type-safe development
 
-```sh
-npx create-turbo@latest
+### Backend
+- **[NestJS 11](https://nestjs.com/)** - Progressive Node.js framework
+- **[Prisma](https://www.prisma.io/)** - Next-generation ORM
+- **[PostgreSQL 18](https://www.postgresql.org/)** - Database
+- **TypeScript** - Type-safe development
+
+### Infrastructure
+- **[Turborepo](https://turborepo.com/)** - Monorepo build system
+- **[Docker](https://www.docker.com/)** - Containerization
+- **[pnpm](https://pnpm.io/)** - Fast, disk space efficient package manager
+
+## Prerequisites
+
+Before you begin, ensure you have the following installed:
+- **Node.js** >= 18
+- **pnpm** 9.0.0 (will be automatically used via `packageManager` field)
+- **Docker** and Docker Compose
+
+## Getting Started
+
+Follow these steps to run the project locally:
+
+### 1. Install Dependencies
+
+```bash
+pnpm install
 ```
 
-## What's inside?
+### 2 Environment Variables
 
-This Turborepo includes the following packages/apps:
+Copy .env.example into .env in packages/db
 
-### Apps and Packages
+### 3. Start the Database
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@smart-notes/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@smart-notes/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@smart-notes/typescript-config`: `tsconfig.json`s used throughout the monorepo
+Run PostgreSQL in a Docker container:
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+```bash
+pnpm docker:dev
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+This will start a PostgreSQL 18 container with the following configuration:
+- **Host**: localhost
+- **Port**: 5432
+- **Database**: smart-notes-db
+- **User**: postgres
+- **Password**: postgres
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+### 4. Generate Prisma Client
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+Generate the Prisma client from the schema:
 
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+```bash
+pnpm generate
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+This command runs the Prisma generator to create the type-safe database client.
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+### 5. Start Development Servers
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+Start both the API and web applications:
+
+```bash
+pnpm dev
 ```
 
-### Remote Caching
+This will start:
+- **Web App**: http://localhost:3000
+- **API**: http://localhost:3001
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+## Project Structure
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+This monorepo includes the following packages and apps:
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+### Apps
 
+- **`apps/web`** - Next.js frontend application
+- **`apps/api`** - NestJS backend API
+
+### Packages
+
+- **`@smart-notes/ui`** - Shared React component library
+- **`@smart-notes/db`** - Prisma database schema and client
+- **`@smart-notes/eslint-config`** - Shared ESLint configurations
+- **`@smart-notes/typescript-config`** - Shared TypeScript configurations
+
+## Available Scripts
+
+### Root Level
+
+- `pnpm dev` - Start all apps in development mode
+- `pnpm build` - Build all apps and packages
+- `pnpm lint` - Lint all apps and packages
+- `pnpm format` - Format all files with Prettier
+- `pnpm generate` - Generate Prisma client
+- `pnpm docker:dev` - Start PostgreSQL database in Docker
+- `pnpm check-types` - Type check all packages
+
+### API (apps/api)
+
+```bash
+cd apps/api
 ```
-cd my-turborepo
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
+- `pnpm dev` - Start API in watch mode
+- `pnpm build` - Build the API
+- `pnpm start:prod` - Start production build
+- `pnpm test` - Run unit tests
+- `pnpm test:e2e` - Run end-to-end tests
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
+### Web (apps/web)
+
+```bash
+cd apps/web
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+- `pnpm dev` - Start Next.js dev server with Turbopack
+- `pnpm build` - Build for production
+- `pnpm start` - Start production server
+- `pnpm lint` - Lint the application
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+### Database (packages/db)
 
+```bash
+cd packages/db
 ```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+- `pnpm prisma:generate` - Generate Prisma client
+- `pnpm prisma:migrate` - Create and apply migrations
+- `pnpm prisma:reset` - Reset database
+- `pnpm prisma:studio` - Open Prisma Studio GUI
+
+## Development Workflow
+
+### Running Specific Apps
+
+You can run individual apps using Turborepo filters:
+
+```bash
+# Run only the web app
+pnpm dev --filter=web
+
+# Run only the API
+pnpm dev --filter=api
 ```
+
+### Database Management
+
+To view and manage your database with Prisma Studio:
+
+```bash
+pnpm --filter @smart-notes/db prisma:studio
+```
+
 
 ## Useful Links
 
-Learn more about the power of Turborepo:
-
+### Turborepo
 - [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
 - [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
 - [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+
+### Tech Stack Documentation
+- [Next.js Documentation](https://nextjs.org/docs)
+- [NestJS Documentation](https://docs.nestjs.com)
+- [Prisma Documentation](https://www.prisma.io/docs)
