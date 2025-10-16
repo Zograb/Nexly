@@ -9,15 +9,18 @@
     }
   },
   "scripts": {
-    "prisma:generate": "prisma generate --schema prisma/schema.prisma",
+    "prisma:generate": "zenstack generate --schema schema.zmodel",
     "prisma:migrate": "prisma migrate dev --schema prisma/schema.prisma --name ",
     "prisma:reset": "prisma migrate reset --schema prisma/schema.prisma",
     "prisma:studio": "prisma studio --schema prisma/schema.prisma"
   },
   "dependencies": {
-    "@prisma/client": "^6.17.1"
+    "@prisma/client": "^6.17.1",
+    "@zenstackhq/runtime": "2.20.1"
   },
   "devDependencies": {
-    "prisma": "^6.17.1"
+    "@types/node": "^24.7.2",
+    "prisma": "^6.17.1",
+    "zenstack": "2.20.1"
   }
 }

@@ -27,6 +27,7 @@ out/
 build
 dist
 packages/db/generated
+packages/db/prisma/schema.prisma
 
 
 # Debug
