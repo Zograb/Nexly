@@ -11,6 +11,8 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@mantine/core": "^8.3.5",
+    "@mantine/hooks": "^8.3.5",
     "@smart-notes/ui": "workspace:*",
     "@tailwindcss/postcss": "^4.1.14",
     "next": "^15.5.0",
