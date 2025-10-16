@@ -1,8 +1,10 @@
-import js from "@eslint/js";
-import eslintConfigPrettier from "eslint-config-prettier";
-import turboPlugin from "eslint-plugin-turbo";
-import tseslint from "typescript-eslint";
-import onlyWarn from "eslint-plugin-only-warn";
+import js from '@eslint/js'
+import eslintConfigPrettier from 'eslint-config-prettier'
+import turboPlugin from 'eslint-plugin-turbo'
+import tseslint from 'typescript-eslint'
+import onlyWarn from 'eslint-plugin-only-warn'
+import pluginImport from 'eslint-plugin-import'
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 
 /**
  * A shared ESLint configuration for the repository.
@@ -13,12 +15,37 @@ export const config = [
   js.configs.recommended,
   eslintConfigPrettier,
   ...tseslint.configs.recommended,
+  pluginImport.flatConfigs.recommended,
+  eslintPluginPrettierRecommended,
   {
     plugins: {
       turbo: turboPlugin,
     },
     rules: {
-      "turbo/no-undeclared-env-vars": "warn",
+      'turbo/no-undeclared-env-vars': 'off',
+      'import/no-dynamic-require': 'warn',
+      'import/no-nodejs-modules': 'warn',
+      'import/consistent-type-specifier-style': ['warn', 'prefer-inline'],
+      'import/first': 'warn',
+      'import/newline-after-import': 'warn',
+      'import/no-duplicates': 'warn',
+      'import/order': ['warn', {'newlines-between': 'always'}],
+      'prettier/prettier': [
+        'error',
+        {
+          endOfLine: 'auto',
+          singleQuote: true,
+          semi: false,
+          quoteProps: 'preserve',
+          bracketSameLine: false,
+        }
+      ],
+    },
+    settings: {
+      'import/resolver': {
+        typescript: true,
+        node: true,
+      },
     },
   },
   {
@@ -27,6 +54,6 @@ export const config = [
     },
   },
   {
-    ignores: ["dist/**"],
+    ignores: ['dist/**'],
   },
 ];
