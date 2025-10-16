@@ -1,20 +1,28 @@
-import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus } from "@nestjs/common";
-import { PinoLogger } from "nestjs-pino";
+import {
+  ArgumentsHost,
+  Catch,
+  ExceptionFilter,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common'
+import { Request, Response } from 'express'
+import { PinoLogger } from 'nestjs-pino'
 
 @Catch()
 export class AllExceptionsFilter implements ExceptionFilter {
   constructor(private readonly logger: PinoLogger) {
-    this.logger.setContext(AllExceptionsFilter.name);
+    this.logger.setContext(AllExceptionsFilter.name)
   }
 
   catch(exception: unknown, host: ArgumentsHost) {
-    const ctx = host.switchToHttp();
-    const response = ctx.getResponse();
-    const request = ctx.getRequest();
-    
-    const status = exception instanceof HttpException
-      ? exception.getStatus()
-      : HttpStatus.INTERNAL_SERVER_ERROR;
+    const ctx = host.switchToHttp()
+    const response = ctx.getResponse<Response>()
+    const request = ctx.getRequest<Request>()
+
+    const status =
+      exception instanceof HttpException
+        ? exception.getStatus()
+        : HttpStatus.INTERNAL_SERVER_ERROR
 
     this.logger.error(
       {
@@ -23,13 +31,13 @@ export class AllExceptionsFilter implements ExceptionFilter {
         method: request.method,
         error: exception,
       },
-      'Exception caught'
-    );
+      'Exception caught',
+    )
 
     response.status(status).json({
       statusCode: status,
       timestamp: new Date().toISOString(),
       path: request.url,
-    });
+    })
   }
 }

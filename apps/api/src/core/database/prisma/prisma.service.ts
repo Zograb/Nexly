@@ -1,10 +1,9 @@
-import { Injectable, OnModuleInit } from '@nestjs/common';
-import { PrismaClient } from '@smart-notes/db/client';
+import { Injectable, OnModuleInit } from '@nestjs/common'
+import { PrismaClient } from '@smart-notes/db/client'
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit {
   async onModuleInit() {
-    await this.$connect();
+    await this.$connect()
   }
 }
-
