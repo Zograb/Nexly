@@ -8,6 +8,7 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "check-types": "tsc --noEmit",
     "start": "nest start",
     "dev": "pnpm start:dev",
     "start:dev": "nest start --watch",
@@ -32,6 +33,7 @@
     "@smart-notes/db": "workspace:*",
     "@smart-notes/eslint-config": "workspace:*",
     "@smart-notes/typescript-config": "workspace:*",
+    "class-transformer": "^0.5.1",
     "express": "^5.1.0",
     "graphql": "^16.11.0",
     "graphql-yoga": "^5.16.0",

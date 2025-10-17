@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      husky:
+        specifier: ^9.1.7
+        version: 9.1.7
       prettier:
         specifier: ^3.6.2
         version: 3.6.2
@@ -53,6 +56,9 @@ importers:
       '@smart-notes/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
+      class-transformer:
+        specifier: ^0.5.1
+        version: 0.5.1
       express:
         specifier: ^5.1.0
         version: 5.1.0
@@ -3252,6 +3258,11 @@ packages:
   human-signals@2.1.0:
     resolution: {integrity: sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==}
     engines: {node: '>=10.17.0'}
+
+  husky@9.1.7:
+    resolution: {integrity: sha512-5gs5ytaNjBrh5Ow3zrvdUUY+0VxIuWVL4i9irt6friV+BqdCfmV11CQTWMiBYWHbXhco+J1kHfTOUkePhCDvMA==}
+    engines: {node: '>=18'}
+    hasBin: true
 
   iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
@@ -7706,8 +7717,7 @@ snapshots:
 
   cjs-module-lexer@2.1.0: {}
 
-  class-transformer@0.5.1:
-    optional: true
+  class-transformer@0.5.1: {}
 
   cli-cursor@3.1.0:
     dependencies:
@@ -8750,6 +8760,8 @@ snapshots:
       - supports-color
 
   human-signals@2.1.0: {}
+
+  husky@9.1.7: {}
 
   iconv-lite@0.6.3:
     dependencies:

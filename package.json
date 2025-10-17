@@ -9,9 +9,11 @@
     "generate": "pnpm --filter @smart-notes/db prisma:generate",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "docker:dev": "docker-compose -f docker-compose.yml up"
+    "docker:dev": "docker-compose -f docker-compose.yml up",
+    "prepare": "husky"
   },
   "devDependencies": {
+    "husky": "^9.1.7",
     "prettier": "^3.6.2",
     "turbo": "^2.5.8",
     "typescript": "5.9.2"
