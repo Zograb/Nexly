@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
+import { User } from '@prisma/client'
 import { PinoLogger } from 'nestjs-pino'
 
-import { User } from '@smart-notes/db/client'
 import { PrismaService } from 'src/core/database/prisma/prisma.service'
 
 @Injectable()

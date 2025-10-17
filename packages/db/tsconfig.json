@@ -1,0 +1,12 @@
+{
+  "extends": "@smart-notes/typescript-config/base.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./generated",
+    "paths": {
+      "generated/*": ["./generated/*"]
+    }
+  },
+  "include": ["scripts", "prisma"],
+  "exclude": ["node_modules"]
+}

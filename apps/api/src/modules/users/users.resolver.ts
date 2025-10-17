@@ -1,8 +1,8 @@
 import { Resolver, Query } from '@nestjs/graphql'
+import { User } from '@prisma/client'
 import { PinoLogger } from 'nestjs-pino'
 
 import { User as UserModel } from '@graphql/models/user/user.model'
-import { User } from '@smart-notes/db/client'
 
 import { UsersService } from './users.service'
 
