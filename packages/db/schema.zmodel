@@ -9,15 +9,17 @@ generator client {
   output   = "../generated/prisma"
 }
 
+generator nestgraphql {
+  provider = "node node_modules/prisma-nestjs-graphql"
+  output = "../../../apps/api/graphql/models"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int     @default(autoincrement()) @id
-  email String  @unique
-
+abstract model Base {
   createdAt DateTime @default(now())
   updatedAt DateTime? @updatedAt
   deletedAt DateTime?
@@ -25,4 +27,9 @@ model User {
   // TO DO: Add proper permissions
   @@allow('all', true)
   @@deny('read', deletedAt != null)
+}
+
+model User extends Base {
+  id    Int     @default(autoincrement()) @id
+  email String  @unique
 }

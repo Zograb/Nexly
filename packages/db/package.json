@@ -9,6 +9,7 @@
     }
   },
   "scripts": {
+    "cleanup": "del-cli generated --force || exit 0",
     "prisma:generate": "zenstack generate --schema schema.zmodel",
     "prisma:migrate": "prisma migrate dev --schema prisma/schema.prisma --name ",
     "prisma:reset": "prisma migrate reset --schema prisma/schema.prisma",
@@ -16,10 +17,14 @@
   },
   "dependencies": {
     "@prisma/client": "^6.17.1",
-    "@zenstackhq/runtime": "2.20.1"
+    "@zenstackhq/runtime": "2.20.1",
+    "graphql-type-json": "^0.3.2",
+    "prisma-graphql-type-decimal": "^3.0.1",
+    "prisma-nestjs-graphql": "^21.2.0"
   },
   "devDependencies": {
     "@types/node": "^24.7.2",
+    "del-cli": "^7.0.0",
     "prisma": "^6.17.1",
     "zenstack": "2.20.1"
   }
