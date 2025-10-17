@@ -2,6 +2,12 @@
   "name": "@nexly/db",
   "version": "0.0.0",
   "private": true,
+  "exports": {
+    "./prisma": {
+      "types": "./generated/prisma/index.d.ts",
+      "default": "./generated/prisma/index.js"
+    }
+  },
   "scripts": {
     "cleanup": "del-cli generated --force || exit 0",
     "seed": "pnpm prisma:reset && ts-node --project tsconfig.json scripts/seed.ts",
@@ -25,6 +31,7 @@
     "del-cli": "^7.0.0",
     "prisma": "^6.17.1",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "zenstack": "2.20.1"
   }
 }

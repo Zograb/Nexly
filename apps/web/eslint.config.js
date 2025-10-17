@@ -1,4 +1,18 @@
-import { nextJsConfig } from "@nexly/eslint-config/next-js";
+import globals from 'globals'
 
-/** @type {import("eslint").Linter.Config[]} */
-export default nextJsConfig;
+import { viteConfig } from '@nexly/eslint-config/vite'
+
+export default [
+  ...viteConfig,
+  {
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.browser,
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
+  },
+]

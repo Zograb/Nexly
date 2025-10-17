@@ -6,12 +6,13 @@
 
 generator client {
   provider = "prisma-client-js"
-  // output   = "../generated/prisma"
+  output   = "../generated/prisma"
 }
 
 generator nestgraphql {
   provider = "node node_modules/prisma-nestjs-graphql"
   output = "../../../apps/api/graphql/models"
+  prismaClientImport = "@nexly/db/prisma"
 }
 
 datasource db {
