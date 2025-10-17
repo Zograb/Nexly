@@ -11,15 +11,16 @@
     "prisma:studio": "prisma studio --schema prisma/schema.prisma"
   },
   "dependencies": {
-    "@prisma/client": "^6.17.1",
     "@nexly/eslint-config": "workspace:*",
     "@nexly/typescript-config": "workspace:*",
+    "@prisma/client": "^6.17.1",
     "@zenstackhq/runtime": "2.20.1",
     "graphql-type-json": "^0.3.2",
     "prisma-graphql-type-decimal": "^3.0.1",
     "prisma-nestjs-graphql": "^21.2.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^10.1.0",
     "@types/node": "^24.7.2",
     "del-cli": "^7.0.0",
     "prisma": "^6.17.1",
