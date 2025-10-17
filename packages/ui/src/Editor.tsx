@@ -1,7 +1,7 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
 import EditorJS, { type API, type OutputData } from '@editorjs/editorjs'
+import { useEffect, useRef } from 'react'
 
 export interface EditorProps {
   data?: OutputData
