@@ -30,6 +30,7 @@ abstract model Base {
 }
 
 model User extends Base {
-  id    Int     @default(autoincrement()) @id
-  email String  @unique
+  id              String @id @default(uuid())
+  email           String @unique
+  preferredName   String?
 }
