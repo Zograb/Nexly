@@ -24,12 +24,25 @@ export const config = [
     rules: {
       'turbo/no-undeclared-env-vars': 'off',
       'import/no-dynamic-require': 'warn',
-      'import/no-nodejs-modules': 'warn',
-      'import/consistent-type-specifier-style': ['warn', 'prefer-inline'],
       'import/first': 'warn',
       'import/newline-after-import': 'warn',
       'import/no-duplicates': 'warn',
-      'import/order': ['warn', {'newlines-between': 'always'}],
+      'import/order': ['warn', {
+        'newlines-between': 'always',
+        'alphabetize': {
+          'order': 'asc',
+          'caseInsensitive': true
+        },
+        'groups': [
+          'type',
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index'
+        ],
+      }],
       'prettier/prettier': [
         'error',
         {
@@ -42,6 +55,7 @@ export const config = [
       ],
     },
     settings: {
+      'import/internal-regex': '^@smart-notes/',
       'import/resolver': {
         typescript: true,
         node: true,
