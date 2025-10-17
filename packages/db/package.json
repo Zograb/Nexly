@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "cleanup": "del-cli generated --force || exit 0",
+    "seed": "pnpm prisma:reset && ts-node --project tsconfig.json scripts/seed.ts",
     "prisma:generate": "zenstack generate --schema schema.zmodel",
     "prisma:migrate": "prisma migrate dev --schema prisma/schema.prisma --name ",
     "prisma:reset": "prisma migrate reset --schema prisma/schema.prisma --force --skip-seed",
