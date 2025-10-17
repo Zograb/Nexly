@@ -66,7 +66,15 @@ pnpm generate
 
 This command runs the Prisma generator to create the type-safe database client.
 
-### 5. Start Development Servers
+### 5. Seed data (Optional)
+
+Run script to seed data. This will reset the database and populate it with generated data.
+
+```bash
+pnpm seed
+```
+
+### 6. Start Development Servers
 
 Start both the API and web applications:
 
