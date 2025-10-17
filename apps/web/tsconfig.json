@@ -1,5 +1,5 @@
 {
-  "extends": "@smart-notes/typescript-config/nextjs.json",
+  "extends": "@nexly/typescript-config/nextjs.json",
   "compilerOptions": {
     "plugins": [
       {

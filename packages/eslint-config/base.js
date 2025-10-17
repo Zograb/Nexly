@@ -55,7 +55,7 @@ export const config = [
       ],
     },
     settings: {
-      'import/internal-regex': '^@smart-notes/',
+      'import/internal-regex': '^@nexly/',
       'import/resolver': {
         typescript: true,
         node: true,

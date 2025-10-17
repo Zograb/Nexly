@@ -1,5 +1,5 @@
 {
-  "extends": "@smart-notes/typescript-config/react-library.json",
+  "extends": "@nexly/typescript-config/react-library.json",
   "compilerOptions": {
     "outDir": "dist"
   },

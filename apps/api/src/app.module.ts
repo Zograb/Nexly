@@ -25,7 +25,7 @@ import { UsersModule } from './modules/users/users.module'
     UsersModule,
     GraphQLModule.forRoot<YogaDriverConfig>({
       driver: YogaDriver,
-      graphiql: true,
+      graphiql: process.env.NODE_ENV === 'development',
       autoSchemaFile: join(process.cwd(), 'graphql/schema.gql'),
     }),
   ],

@@ -1,5 +1,5 @@
 {
-  "extends": "@smart-notes/typescript-config/base.json",
+  "extends": "@nexly/typescript-config/base.json",
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./generated",

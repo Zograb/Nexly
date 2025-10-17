@@ -1,6 +1,6 @@
-# Smart Notes
+# Nexly
 
-A full-stack note-taking application powered by AI and built with a modern monorepo architecture using Turborepo.
+Note-taking application powered by AI and built with a modern monorepo architecture using Turborepo.
 
 ## Tech Stack
 
@@ -52,7 +52,7 @@ pnpm docker:dev
 This will start a PostgreSQL 18 container with the following configuration:
 - **Host**: localhost
 - **Port**: 5432
-- **Database**: smart-notes-db
+- **Database**: nexly-db
 - **User**: postgres
 - **Password**: postgres
 
@@ -89,10 +89,10 @@ This monorepo includes the following packages and apps:
 
 ### Packages
 
-- **`@smart-notes/ui`** - Shared React component library
-- **`@smart-notes/db`** - Prisma database schema and client
-- **`@smart-notes/eslint-config`** - Shared ESLint configurations
-- **`@smart-notes/typescript-config`** - Shared TypeScript configurations
+- **`@nexly/ui`** - Shared React component library
+- **`@nexly/db`** - Prisma database schema and client
+- **`@nexly/eslint-config`** - Shared ESLint configurations
+- **`@nexly/typescript-config`** - Shared TypeScript configurations
 
 ## Available Scripts
 
@@ -159,7 +159,7 @@ pnpm dev --filter=api
 To view and manage your database with Prisma Studio:
 
 ```bash
-pnpm --filter @smart-notes/db prisma:studio
+pnpm --filter @nexly/db prisma:studio
 ```
 
 

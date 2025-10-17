@@ -44,18 +44,18 @@ importers:
       '@nestjs/platform-express':
         specifier: ^11.0.1
         version: 11.1.6(@nestjs/common@11.1.6(class-transformer@0.5.1)(reflect-metadata@0.2.2)(rxjs@7.8.2))(@nestjs/core@11.1.6)
+      '@nexly/db':
+        specifier: workspace:*
+        version: link:../../packages/db
+      '@nexly/eslint-config':
+        specifier: workspace:*
+        version: link:../../packages/eslint-config
+      '@nexly/typescript-config':
+        specifier: workspace:*
+        version: link:../../packages/typescript-config
       '@prisma/client':
         specifier: ^6.17.1
         version: 6.17.1(prisma@6.17.1(typescript@5.9.2))(typescript@5.9.2)
-      '@smart-notes/db':
-        specifier: workspace:*
-        version: link:../../packages/db
-      '@smart-notes/eslint-config':
-        specifier: workspace:*
-        version: link:../../packages/eslint-config
-      '@smart-notes/typescript-config':
-        specifier: workspace:*
-        version: link:../../packages/typescript-config
       class-transformer:
         specifier: ^0.5.1
         version: 0.5.1
@@ -144,7 +144,7 @@ importers:
       '@mantine/hooks':
         specifier: ^8.3.5
         version: 8.3.5(react@19.1.0)
-      '@smart-notes/ui':
+      '@nexly/ui':
         specifier: workspace:*
         version: link:../../packages/ui
       '@tailwindcss/postcss':
@@ -166,10 +166,10 @@ importers:
         specifier: ^4.1.14
         version: 4.1.14
     devDependencies:
-      '@smart-notes/eslint-config':
+      '@nexly/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
-      '@smart-notes/typescript-config':
+      '@nexly/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
       '@types/node':
@@ -190,15 +190,15 @@ importers:
 
   packages/db:
     dependencies:
+      '@nexly/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@nexly/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
       '@prisma/client':
         specifier: ^6.17.1
         version: 6.17.1(prisma@6.17.1(typescript@5.9.2))(typescript@5.9.2)
-      '@smart-notes/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config
-      '@smart-notes/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
       '@zenstackhq/runtime':
         specifier: 2.20.1
         version: 2.20.1(@prisma/client@6.17.1(prisma@6.17.1(typescript@5.9.2))(typescript@5.9.2))(zod@4.1.12)
@@ -296,10 +296,10 @@ importers:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
     devDependencies:
-      '@smart-notes/eslint-config':
+      '@nexly/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
-      '@smart-notes/typescript-config':
+      '@nexly/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       '@types/node':

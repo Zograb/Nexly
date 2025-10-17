@@ -1,5 +1,5 @@
 {
-  "name": "@smart-notes/db",
+  "name": "@nexly/db",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -12,8 +12,8 @@
   },
   "dependencies": {
     "@prisma/client": "^6.17.1",
-    "@smart-notes/eslint-config": "workspace:*",
-    "@smart-notes/typescript-config": "workspace:*",
+    "@nexly/eslint-config": "workspace:*",
+    "@nexly/typescript-config": "workspace:*",
     "@zenstackhq/runtime": "2.20.1",
     "graphql-type-json": "^0.3.2",
     "prisma-graphql-type-decimal": "^3.0.1",

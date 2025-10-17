@@ -1,12 +1,12 @@
 {
-  "name": "smart-notes",
+  "name": "nexly",
   "private": true,
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
     "lint": "turbo run lint",
-    "seed": "pnpm --filter @smart-notes/db seed",
-    "generate": "pnpm --filter @smart-notes/db prisma:generate",
+    "seed": "pnpm --filter @nexly/db seed",
+    "generate": "pnpm --filter @nexly/db prisma:generate",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
     "docker:dev": "docker-compose -f docker-compose.yml up",
