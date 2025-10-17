@@ -11,14 +11,17 @@
   },
   "dependencies": {
     "@apollo/client": "^4.0.7",
+    "@tailwindcss/vite": "^4.1.14",
     "graphql": "^16.11.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "tailwindcss": "^4.1.14"
   },
   "devDependencies": {
     "@nexly/eslint-config": "workspace:*",
     "@nexly/typescript-config": "workspace:*",
+    "@nexly/ui": "workspace:*",
     "@types/node": "^24.6.0",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",

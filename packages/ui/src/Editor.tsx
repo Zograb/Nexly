@@ -1,5 +1,3 @@
-'use client'
-
 import EditorJS, { type API, type OutputData } from '@editorjs/editorjs'
 import { useEffect, useRef } from 'react'
 
