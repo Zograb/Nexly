@@ -29,6 +29,7 @@
     "@faker-js/faker": "^10.1.0",
     "@types/node": "^24.7.2",
     "del-cli": "^7.0.0",
+    "eslint-plugin-react-refresh": "^0.4.24",
     "prisma": "^6.17.1",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
