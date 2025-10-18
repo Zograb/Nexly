@@ -5,13 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "pnpm generate-routes && tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate-routes": "tsr generate"
   },
   "dependencies": {
     "@apollo/client": "^4.0.7",
     "@tailwindcss/vite": "^4.1.14",
+    "@tanstack/react-router": "^1.133.13",
+    "@tanstack/react-router-devtools": "^1.133.13",
     "graphql": "^16.11.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
@@ -22,6 +25,8 @@
     "@nexly/eslint-config": "workspace:*",
     "@nexly/typescript-config": "workspace:*",
     "@nexly/ui": "workspace:*",
+    "@tanstack/router-cli": "^1.133.13",
+    "@tanstack/router-plugin": "^1.133.13",
     "@types/node": "^24.6.0",
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",

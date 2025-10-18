@@ -5,6 +5,9 @@ import { viteConfig } from '@nexly/eslint-config/vite'
 export default [
   ...viteConfig,
   {
+    ignores: ['**/routeTree.gen.ts'],
+  },
+  {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2020,
