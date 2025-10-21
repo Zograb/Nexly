@@ -2,6 +2,7 @@ import path from 'path'
 
 import tailwindcss from '@tailwindcss/vite'
 import { tanstackRouter } from '@tanstack/router-plugin/vite'
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
@@ -16,6 +17,7 @@ export default defineConfig({
       autoCodeSplitting: true,
     }),
     react(),
+    vanillaExtractPlugin(),
     tailwindcss(),
   ],
   resolve: {
