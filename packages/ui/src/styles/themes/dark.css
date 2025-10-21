@@ -1,0 +1,18 @@
+@theme {
+  --color-primary: #404040;
+
+  --color-foreground-primary: #e5e5e5;
+  --color-foreground-secondary: #a1a1a1;
+
+  --color-background-primary: #e5e5e5;
+  --color-background-secondary: #a1a1a1;
+  
+  --color-background: #171717;
+  --color-foreground: #212121;
+
+  --color-foreground-border: #262626;
+
+  --color-error: #ff2056;
+  --color-warning: #ff8904;
+  --color-success: #7ccf00;
+}

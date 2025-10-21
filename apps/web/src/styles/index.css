@@ -2,6 +2,12 @@
 
 @import 'tailwindcss';
 
+@import 'tw-animate-css';
+
+@import '@nexly/ui/styles/themes';
+
+@source '../../../../packages/ui';
+
 html, body {
   font-family: 'Inter', sans-serif
 }

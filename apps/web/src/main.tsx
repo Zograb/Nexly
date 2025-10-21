@@ -4,9 +4,8 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
 import { apolloClient } from 'src/graphql/apollo'
-
-import { router } from './lib/router'
-import './index.css'
+import { router } from 'src/lib/router'
+import 'src/styles/index.css'
 
 const rootElement = document.getElementById('root')!
 
