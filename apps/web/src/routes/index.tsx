@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-import { Editor } from '@nexly/ui/components/Editor'
+import { Editor } from '@nexly/ui/components/Editor/Editor'
 
 export const Route = createFileRoute('/')({
   component: RouteComponent,
@@ -8,7 +8,7 @@ export const Route = createFileRoute('/')({
 
 function RouteComponent() {
   return (
-    <div className="text-2xl py-10">
+    <div className="text-2xl py-10 h-full">
       <Editor />
     </div>
   )

@@ -1,6 +1,8 @@
 import { Outlet, createRootRoute } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 
+import { ScrollArea } from '@nexly/ui/components/ScrollArea/ScrollArea'
+import { ScrollBar } from '@nexly/ui/components/ScrollArea/ScrollBar'
 import { Sidebar } from 'src/components/layout/Sidebar'
 
 export const Route = createRootRoute({
@@ -12,9 +14,12 @@ function RootComponent() {
     <div>
       <div className="flex h-screen">
         <Sidebar />
-        <div className="flex-1 h-screen bg-background">
-          <Outlet />
-        </div>
+        <ScrollArea className="flex-1 bg-background">
+          <div className="min-h-screen">
+            <Outlet />
+          </div>
+          <ScrollBar orientation="vertical" />
+        </ScrollArea>
       </div>
       <TanStackRouterDevtools position="bottom-right" />
     </div>
