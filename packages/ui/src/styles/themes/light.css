@@ -1,5 +1,6 @@
 [data-theme='light'] {
   --color-primary: #dfdfdf;
+  --color-accent: #8f8f8f;
 
   --color-foreground-primary: #161616;
   --color-foreground-secondary: #575757;
@@ -12,7 +13,7 @@
 
   --color-foreground-border: #d1d1d1;
 
-  --color-error: #ff2056;
+  --color-error: #b9002e;
   --color-warning: #ff8904;
   --color-success: #7ccf00;
 }
