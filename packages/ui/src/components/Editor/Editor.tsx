@@ -5,6 +5,7 @@ import { useMemo } from 'react'
 import { Button } from '../Button'
 
 import { editorBase } from './Editor.css'
+import { SlashCommands } from './extensions/SlashCommands'
 
 export const Editor = () => {
   const editor = useEditor({
@@ -14,6 +15,7 @@ export const Editor = () => {
           levels: [1, 2],
         },
       }),
+      SlashCommands,
     ],
     content: '',
   })

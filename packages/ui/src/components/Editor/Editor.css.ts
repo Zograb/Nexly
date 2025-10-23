@@ -15,6 +15,12 @@ globalStyle(`${editorBase} .ProseMirror-focused:focus-visible`, {
   outline: 'none',
 })
 
+globalStyle(`${editorBase} .tiptap .suggestion`, {
+  backgroundColor: 'var(--color-primary)',
+  borderRadius: 6,
+  padding: '4px 8px',
+})
+
 globalStyle(`${editorBase} .tiptap::selection`, {
   backgroundColor: 'var(--color-primary)',
 })
