@@ -1,5 +1,7 @@
+import { Color } from '@tiptap/extension-color'
 import { TaskItem } from '@tiptap/extension-task-item'
 import { TaskList } from '@tiptap/extension-task-list'
+import { TextStyle } from '@tiptap/extension-text-style'
 import { useEditor, EditorContent, EditorContext } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { useMemo } from 'react'
@@ -14,6 +16,8 @@ import { SlashCommands } from './extensions/SlashCommands'
 export const Editor = () => {
   const editor = useEditor({
     extensions: [
+      TextStyle,
+      Color,
       StarterKit.configure({
         heading: {
           levels: [1, 2],

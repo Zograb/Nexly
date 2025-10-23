@@ -7,6 +7,8 @@ import { Trash, Quote, Code } from 'lucide-react'
 import { cn } from '../../../../utils'
 import { Button } from '../../../Button'
 
+import { ColorPicker } from './ColorPicker'
+
 export interface BubbleMenuProps {
   editor: Editor
 }
@@ -108,6 +110,7 @@ export const BubbleMenu = ({ editor }: BubbleMenuProps) => {
         >
           <Code />
         </BubbleMenuButton>
+        <ColorPicker editor={editor} />
         <span className="text-foreground-border">|</span>
         <Button
           size="icon"
