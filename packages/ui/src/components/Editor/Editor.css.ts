@@ -54,6 +54,16 @@ globalStyle(`${editorBase} .tiptap ul[data-type="taskList"] li`, {
   gap: 12,
 })
 
+globalStyle(
+  `${editorBase} .tiptap ul[data-type="taskList"] li input[type="checkbox"]`,
+  {
+    position: 'relative',
+    top: '2px',
+    width: 16,
+    height: 16,
+  },
+)
+
 globalStyle(`${editorBase} .tiptap ol`, {
   listStyleType: 'decimal',
   paddingLeft: 25,

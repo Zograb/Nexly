@@ -1,3 +1,5 @@
+import { TaskItem } from '@tiptap/extension-task-item'
+import { TaskList } from '@tiptap/extension-task-list'
 import { useEditor, EditorContent, EditorContext } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { useMemo } from 'react'
@@ -17,6 +19,8 @@ export const Editor = () => {
           levels: [1, 2],
         },
       }),
+      TaskList,
+      TaskItem.configure({ nested: true }),
       SlashCommands,
     ],
     content: '',
