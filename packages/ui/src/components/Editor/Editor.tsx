@@ -4,6 +4,7 @@ import { useMemo } from 'react'
 
 import { Button } from '../Button'
 
+import { BubbleMenu } from './components/BubbleMenu/BubbleMenu'
 import { FloatingMenu } from './components/FloatingMenu'
 import { editorBase } from './Editor.css'
 import { SlashCommands } from './extensions/SlashCommands'
@@ -29,6 +30,7 @@ export const Editor = () => {
       <EditorContext.Provider value={providerValue}>
         <EditorContent className={editorBase} editor={editor} />
         <FloatingMenu editor={editor} />
+        <BubbleMenu editor={editor} />
       </EditorContext.Provider>
     </div>
   )
