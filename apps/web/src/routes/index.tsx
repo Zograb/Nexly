@@ -8,7 +8,7 @@ export const Route = createFileRoute('/')({
 
 function RouteComponent() {
   return (
-    <div className="text-2xl py-10 h-full">
+    <div className="py-10 h-full">
       <Editor />
     </div>
   )

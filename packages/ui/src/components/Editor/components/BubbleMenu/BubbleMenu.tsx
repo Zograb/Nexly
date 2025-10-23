@@ -2,7 +2,14 @@ import type { PropsWithChildren } from 'react'
 
 import { type Editor, useEditorState } from '@tiptap/react'
 import { BubbleMenu as TiptapBubbleMenu } from '@tiptap/react/menus'
-import { Trash, Quote, Code } from 'lucide-react'
+import {
+  Trash,
+  Quote,
+  Code,
+  AlignLeft,
+  AlignRight,
+  AlignCenter,
+} from 'lucide-react'
 
 import { cn } from '../../../../utils'
 import { Button } from '../../../Button'
@@ -51,6 +58,13 @@ export const BubbleMenu = ({ editor }: BubbleMenuProps) => {
       isBulletList: editorInstance.isActive('bulletList'),
       isOrderedList: editorInstance.isActive('orderedList'),
       isCode: editorInstance.isActive('code'),
+      isTextAlignLeft: editorInstance.isActive({ textAlign: 'left' }),
+      isTextAlignCenter: editorInstance.isActive({
+        textAlign: 'center',
+      }),
+      isTextAlignRight: editorInstance.isActive({
+        textAlign: 'right',
+      }),
     }),
   })
 
@@ -111,6 +125,25 @@ export const BubbleMenu = ({ editor }: BubbleMenuProps) => {
           <Code />
         </BubbleMenuButton>
         <ColorPicker editor={editor} />
+        <span className="text-foreground-border">|</span>
+        <BubbleMenuButton
+          onClick={() => editor.chain().focus().toggleTextAlign('left').run()}
+          isActive={editorState.isTextAlignLeft}
+        >
+          <AlignLeft />
+        </BubbleMenuButton>
+        <BubbleMenuButton
+          onClick={() => editor.chain().focus().toggleTextAlign('center').run()}
+          isActive={editorState.isTextAlignCenter}
+        >
+          <AlignCenter />
+        </BubbleMenuButton>
+        <BubbleMenuButton
+          onClick={() => editor.chain().focus().toggleTextAlign('right').run()}
+          isActive={editorState.isTextAlignRight}
+        >
+          <AlignRight />
+        </BubbleMenuButton>
         <span className="text-foreground-border">|</span>
         <Button
           size="icon"
