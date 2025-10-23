@@ -18,7 +18,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          'bg-primary text-foreground-primary hover:opacity-80 active:scale-70',
+          'bg-primary text-foreground-primary hover:opacity-80 active:scale-90',
         secondary:
           'bg-transparent text-foreground-primary hover:bg-primary active:opacity-80',
         destructive:
@@ -36,6 +36,7 @@ const buttonVariants = cva(
         sm: 'h-6 px-2 text-xs',
         md: 'h-8 px-4 text-sm',
         lg: 'h-10 px-6 text-base',
+        icon: 'p-1 h-auto w-auto aspect-square',
       },
     },
     defaultVariants: {
@@ -72,12 +73,14 @@ const Button = ({
       )}
       {...props}
     >
-      {icon && (
-        <div className="flex items-center justify-center h-full min-w-6">
-          {icon}
-        </div>
-      )}
-      {children}
+      <>
+        {icon && (
+          <div className="flex items-center justify-center h-full min-w-6">
+            {icon}
+          </div>
+        )}
+        {children}
+      </>
     </Comp>
   )
 }
