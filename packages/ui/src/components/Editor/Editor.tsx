@@ -4,6 +4,7 @@ import { useMemo } from 'react'
 
 import { Button } from '../Button'
 
+import { FloatingMenu } from './components/FloatingMenu'
 import { editorBase } from './Editor.css'
 import { SlashCommands } from './extensions/SlashCommands'
 
@@ -27,6 +28,7 @@ export const Editor = () => {
       <Button onClick={() => console.log(editor.getHTML())}>Get HTML</Button>
       <EditorContext.Provider value={providerValue}>
         <EditorContent className={editorBase} editor={editor} />
+        <FloatingMenu editor={editor} />
       </EditorContext.Provider>
     </div>
   )
