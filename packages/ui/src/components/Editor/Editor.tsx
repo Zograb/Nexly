@@ -13,7 +13,7 @@ import { editorBase } from './Editor.css'
 import { SlashCommands } from './extensions/SlashCommands'
 
 export interface EditorProps {
-  onChange: (html: string) => void
+  onChange?: (html: string) => void
   initialContent?: string
 }
 
