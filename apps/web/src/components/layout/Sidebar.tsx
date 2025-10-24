@@ -1,7 +1,12 @@
 import clsx from 'clsx'
-import { House, LogOut, Search, Settings } from 'lucide-react'
+import { FileText, House, LogOut, Search, Settings } from 'lucide-react'
 
 import { NavLink } from 'src/components/ui/NavLink'
+
+const notes = [
+  { id: '1', name: 'Note 1' },
+  { id: '2', name: 'Note 2' },
+]
 
 export const Sidebar = () => {
   return (
@@ -25,6 +30,18 @@ export const Sidebar = () => {
               Home
             </NavLink>
             <NavLink icon={<Search size={16} />}>Search</NavLink>
+          </div>
+          <div className="flex flex-col gap-1 mt-14">
+            {notes.map((note) => (
+              <NavLink
+                key={note.id}
+                to={`/note/$noteId`}
+                params={{ noteId: note.id }}
+                icon={<FileText size={16} />}
+              >
+                {note.name}
+              </NavLink>
+            ))}
           </div>
         </div>
         <div className="flex flex-col gap-1">

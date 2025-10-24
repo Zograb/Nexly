@@ -5,12 +5,18 @@ import { cn } from '@nexly/ui/utils'
 
 export interface NavLinkProps extends ButtonProps {
   to?: LinkProps['to']
+  params?: LinkProps['params']
 }
 
-export const NavLink = ({ to, className, ...otherProps }: NavLinkProps) => {
+export const NavLink = ({
+  to,
+  className,
+  params,
+  ...otherProps
+}: NavLinkProps) => {
   if (to) {
     return (
-      <Link to={to}>
+      <Link to={to} params={params}>
         {({ isActive }) => (
           <Button
             className={cn(
