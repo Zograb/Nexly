@@ -7,7 +7,7 @@ export const editorBase = style({
 
 globalStyle(`${editorBase} .tiptap`, {
   height: '100%',
-  minHeight: 'calc(100vh - 100px)',
+  minHeight: 'calc(100vh - 300px)',
   color: 'var(--color-foreground-primary)',
 })
 

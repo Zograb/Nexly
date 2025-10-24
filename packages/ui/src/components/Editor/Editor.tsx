@@ -43,12 +43,10 @@ export const Editor = ({ onChange, initialContent }: EditorProps) => {
   const providerValue = useMemo(() => ({ editor }), [editor])
 
   return (
-    <div className="max-w-[800px] h-full mx-auto">
-      <EditorContext.Provider value={providerValue}>
-        <EditorContent className={editorBase} editor={editor} />
-        <FloatingMenu editor={editor} />
-        <BubbleMenu editor={editor} />
-      </EditorContext.Provider>
-    </div>
+    <EditorContext.Provider value={providerValue}>
+      <EditorContent className={editorBase} editor={editor} />
+      <FloatingMenu editor={editor} />
+      <BubbleMenu editor={editor} />
+    </EditorContext.Provider>
   )
 }
