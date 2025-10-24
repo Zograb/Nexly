@@ -36,6 +36,7 @@ model User extends Base {
   preferredName   String?
 
   notes           Note[]
+  folders         Folder[]
 }
 
 model Note extends Base {
@@ -46,6 +47,24 @@ model Note extends Base {
   userId          String
   user            User   @relation(fields: [userId], references: [id])
 
+  folderId        String
+  folder          Folder @relation(fields: [folderId], references: [id])
+
   @@index([userId])
+  @@index([folderId])
   @@unique([userId, title])
 }
+
+model Folder extends Base {
+  id              String @id @default(uuid())
+  name            String @unique
+
+  userId          String
+  user            User   @relation(fields: [userId], references: [id])
+
+  notes           Note[]
+
+  @@index([userId])
+  @@unique([userId, name])
+}
+
