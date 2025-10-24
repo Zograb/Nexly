@@ -45,8 +45,6 @@ export const ColorPicker = ({ editor }: ColorPickerProps) => {
     [editor],
   )
 
-  console.log('isOpen ===>', isOpen)
-
   useEffect(() => {
     if (color !== '') {
       editor.chain().focus().setColor(color).run()
