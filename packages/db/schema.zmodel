@@ -34,4 +34,18 @@ model User extends Base {
   id              String @id @default(uuid())
   email           String @unique
   preferredName   String?
+
+  notes           Note[]
+}
+
+model Note extends Base {
+  id              String @id @default(uuid())
+  title           String @unique
+  content         String
+
+  userId          String
+  user            User   @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@unique([userId, title])
 }
