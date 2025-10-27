@@ -30,6 +30,7 @@ export const nodeConfig = [
   {
     rules: {
       '@typescript-eslint/no-floating-promises': 'off',
+      '@typescript-eslint/no-unsafe-call': 'off',
     },
   },
 ];
