@@ -4,6 +4,8 @@ import clsx from 'clsx'
 import { FileText, House, LogOut, Search, Settings } from 'lucide-react'
 
 import { NavLink } from 'src/components/ui/NavLink'
+import { useCurrentUser } from 'src/hooks/useCurrentUser'
+import { getUserInitials } from 'src/utils/helpers/getUserInitials'
 
 const notes = [
   { id: '1', name: 'Note 1' },
@@ -13,6 +15,7 @@ const notes = [
 export const Sidebar = () => {
   const { signOut } = useAuth()
   const navigate = useNavigate()
+  const { user } = useCurrentUser()
 
   const logout = async () => {
     await signOut()
@@ -31,12 +34,14 @@ export const Sidebar = () => {
               className={clsx(
                 'rounded-full w-10 h-10',
                 'flex justify-center items-center',
-                'bg-primary text-foreground-primary text-xs',
+                'bg-primary text-foreground-primary text-sm',
               )}
             >
-              ZM
+              {getUserInitials(user?.preferredName || '')}
             </div>
-            <span className="text-foreground-primary">Zograb Mkrtchyan</span>
+            <span className="text-foreground-primary">
+              {user?.preferredName}
+            </span>
           </div>
           <div className="flex flex-col gap-1 mt-8">
             <NavLink icon={<House size={16} />} to="/">

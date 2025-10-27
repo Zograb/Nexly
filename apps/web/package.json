@@ -28,6 +28,7 @@
   "devDependencies": {
     "@nexly/eslint-config": "workspace:*",
     "@nexly/typescript-config": "workspace:*",
+    "@nexly/db": "workspace:*",
     "@nexly/ui": "workspace:*",
     "@tanstack/router-cli": "^1.133.13",
     "@tanstack/router-plugin": "^1.133.13",
