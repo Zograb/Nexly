@@ -8,6 +8,7 @@
     "seed": "pnpm --filter @nexly/db seed",
     "migrate": "pnpm --filter @nexly/db prisma:migrate",
     "generate": "pnpm --filter @nexly/db prisma:generate",
+    "studio": "pnpm --filter @nexly/db prisma:studio",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
     "docker:dev": "docker-compose -f docker-compose.yml up",

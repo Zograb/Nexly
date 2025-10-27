@@ -4,6 +4,13 @@ import { PrismaClient, Prisma } from 'generated/prisma'
 
 const prisma = new PrismaClient()
 
+const permanentUsers = [
+  {
+    email: 'nexly_user+clerk_test@test.com',
+    preferredName: 'John Doe',
+  },
+]
+
 const seedUsers = async (amount = 5) => {
   const users: Prisma.UserCreateManyInput[] = []
 
@@ -16,14 +23,57 @@ const seedUsers = async (amount = 5) => {
     })
   }
 
+  const allUsers = [...users, ...permanentUsers]
+
   await prisma.user.createMany({
-    data: users,
+    data: allUsers,
   })
-  console.log(`Users seeded successfully: ${amount}`)
+  console.log(`Users seeded successfully: ${allUsers.length}`)
+}
+
+const seedFolders = async (amount = 3) => {
+  const users = await prisma.user.findMany()
+  const folders: Prisma.FolderCreateManyInput[] = []
+  for (const user of users) {
+    for (let i = 0; i < amount; i++) {
+      folders.push({
+        name: faker.lorem.word(),
+        userId: user.id,
+      })
+    }
+  }
+
+  await prisma.folder.createMany({
+    data: folders,
+  })
+  console.log(`Folders seeded successfully: ${folders.length}`)
+}
+
+const seedNotes = async (amount = 3) => {
+  const folders = await prisma.folder.findMany()
+  const notes: Prisma.NoteCreateManyInput[] = []
+
+  for (const folder of folders) {
+    for (let i = 0; i < amount; i++) {
+      notes.push({
+        title: faker.lorem.sentence({ min: 2, max: 4 }),
+        content: faker.lorem.paragraph(),
+        userId: folder.userId,
+        folderId: folder.id,
+      })
+    }
+  }
+
+  await prisma.note.createMany({
+    data: notes,
+  })
+  console.log(`Notes seeded successfully: ${notes.length}`)
 }
 
 async function main() {
   await seedUsers()
+  await seedFolders()
+  await seedNotes()
 }
 
 main()
