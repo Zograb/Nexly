@@ -1,3 +1,5 @@
+import { useAuth } from '@clerk/clerk-react'
+import { useNavigate } from '@tanstack/react-router'
 import clsx from 'clsx'
 import { FileText, House, LogOut, Search, Settings } from 'lucide-react'
 
@@ -9,6 +11,17 @@ const notes = [
 ]
 
 export const Sidebar = () => {
+  const { signOut } = useAuth()
+  const navigate = useNavigate()
+
+  const logout = async () => {
+    await signOut()
+
+    navigate({
+      to: '/login',
+    })
+  }
+
   return (
     <div className="w-[260px] bg-foreground h-screen border-r border-foreground-border py-4 px-2">
       <div className="flex flex-col h-full">
@@ -48,7 +61,9 @@ export const Sidebar = () => {
           <NavLink icon={<Settings size={16} />} to="/settings">
             Settings
           </NavLink>
-          <NavLink icon={<LogOut size={16} />}>Log Out</NavLink>
+          <NavLink icon={<LogOut size={16} />} onClick={logout}>
+            Log Out
+          </NavLink>
         </div>
       </div>
     </div>

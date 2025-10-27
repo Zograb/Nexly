@@ -5,11 +5,11 @@ import { TabsContent } from '@nexly/ui/components/Tabs/TabsContent'
 import { TabsList } from '@nexly/ui/components/Tabs/TabsList'
 import { TabsTrigger } from '@nexly/ui/components/Tabs/TabsTrigger'
 
-export const Route = createFileRoute('/settings')({
-  component: RouteComponent,
+export const Route = createFileRoute('/_protected/settings')({
+  component: LayoutComponent,
 })
 
-function RouteComponent() {
+function LayoutComponent() {
   return (
     <div className="py-10 px-5 container mx-auto">
       <Tabs defaultValue="account">

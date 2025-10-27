@@ -9,86 +9,135 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SettingsRouteImport } from './routes/settings'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as NoteNoteIdRouteImport } from './routes/note/$noteId'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ProtectedRouteImport } from './routes/_protected'
+import { Route as ProtectedIndexRouteImport } from './routes/_protected/index'
+import { Route as ProtectedSettingsRouteImport } from './routes/_protected/settings'
+import { Route as ProtectedNoteNoteIdRouteImport } from './routes/_protected/note/$noteId'
 
-const SettingsRoute = SettingsRouteImport.update({
-  id: '/settings',
-  path: '/settings',
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
+const ProtectedRoute = ProtectedRouteImport.update({
+  id: '/_protected',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProtectedIndexRoute = ProtectedIndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => ProtectedRoute,
 } as any)
-const NoteNoteIdRoute = NoteNoteIdRouteImport.update({
+const ProtectedSettingsRoute = ProtectedSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => ProtectedRoute,
+} as any)
+const ProtectedNoteNoteIdRoute = ProtectedNoteNoteIdRouteImport.update({
   id: '/note/$noteId',
   path: '/note/$noteId',
-  getParentRoute: () => rootRouteImport,
+  getParentRoute: () => ProtectedRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/settings': typeof SettingsRoute
-  '/note/$noteId': typeof NoteNoteIdRoute
+  '/login': typeof LoginRoute
+  '/settings': typeof ProtectedSettingsRoute
+  '/': typeof ProtectedIndexRoute
+  '/note/$noteId': typeof ProtectedNoteNoteIdRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/settings': typeof SettingsRoute
-  '/note/$noteId': typeof NoteNoteIdRoute
+  '/login': typeof LoginRoute
+  '/settings': typeof ProtectedSettingsRoute
+  '/': typeof ProtectedIndexRoute
+  '/note/$noteId': typeof ProtectedNoteNoteIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/settings': typeof SettingsRoute
-  '/note/$noteId': typeof NoteNoteIdRoute
+  '/_protected': typeof ProtectedRouteWithChildren
+  '/login': typeof LoginRoute
+  '/_protected/settings': typeof ProtectedSettingsRoute
+  '/_protected/': typeof ProtectedIndexRoute
+  '/_protected/note/$noteId': typeof ProtectedNoteNoteIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/settings' | '/note/$noteId'
+  fullPaths: '/login' | '/settings' | '/' | '/note/$noteId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/settings' | '/note/$noteId'
-  id: '__root__' | '/' | '/settings' | '/note/$noteId'
+  to: '/login' | '/settings' | '/' | '/note/$noteId'
+  id:
+    | '__root__'
+    | '/_protected'
+    | '/login'
+    | '/_protected/settings'
+    | '/_protected/'
+    | '/_protected/note/$noteId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  SettingsRoute: typeof SettingsRoute
-  NoteNoteIdRoute: typeof NoteNoteIdRoute
+  ProtectedRoute: typeof ProtectedRouteWithChildren
+  LoginRoute: typeof LoginRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/settings': {
-      id: '/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof SettingsRouteImport
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
+    '/_protected': {
+      id: '/_protected'
+      path: ''
+      fullPath: ''
+      preLoaderRoute: typeof ProtectedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_protected/': {
+      id: '/_protected/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof ProtectedIndexRouteImport
+      parentRoute: typeof ProtectedRoute
     }
-    '/note/$noteId': {
-      id: '/note/$noteId'
+    '/_protected/settings': {
+      id: '/_protected/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof ProtectedSettingsRouteImport
+      parentRoute: typeof ProtectedRoute
+    }
+    '/_protected/note/$noteId': {
+      id: '/_protected/note/$noteId'
       path: '/note/$noteId'
       fullPath: '/note/$noteId'
-      preLoaderRoute: typeof NoteNoteIdRouteImport
-      parentRoute: typeof rootRouteImport
+      preLoaderRoute: typeof ProtectedNoteNoteIdRouteImport
+      parentRoute: typeof ProtectedRoute
     }
   }
 }
 
+interface ProtectedRouteChildren {
+  ProtectedSettingsRoute: typeof ProtectedSettingsRoute
+  ProtectedIndexRoute: typeof ProtectedIndexRoute
+  ProtectedNoteNoteIdRoute: typeof ProtectedNoteNoteIdRoute
+}
+
+const ProtectedRouteChildren: ProtectedRouteChildren = {
+  ProtectedSettingsRoute: ProtectedSettingsRoute,
+  ProtectedIndexRoute: ProtectedIndexRoute,
+  ProtectedNoteNoteIdRoute: ProtectedNoteNoteIdRoute,
+}
+
+const ProtectedRouteWithChildren = ProtectedRoute._addFileChildren(
+  ProtectedRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
-  IndexRoute: IndexRoute,
-  SettingsRoute: SettingsRoute,
-  NoteNoteIdRoute: NoteNoteIdRoute,
+  ProtectedRoute: ProtectedRouteWithChildren,
+  LoginRoute: LoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

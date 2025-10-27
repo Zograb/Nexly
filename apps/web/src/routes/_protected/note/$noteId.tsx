@@ -5,7 +5,7 @@ import { Editor } from '@nexly/ui/components/Editor/Editor'
 import { Input } from '@nexly/ui/components/Input'
 import { useDebounce } from 'src/hooks/useDebounce'
 
-export const Route = createFileRoute('/note/$noteId')({
+export const Route = createFileRoute('/_protected/note/$noteId')({
   component: RouteComponent,
 })
 
