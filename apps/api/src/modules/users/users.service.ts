@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common'
+import { Inject, Injectable } from '@nestjs/common'
+import { ENHANCED_PRISMA } from '@zenstackhq/server/nestjs'
 import { PinoLogger } from 'nestjs-pino'
 
 import { User } from '@nexly/db/prisma'
@@ -7,7 +8,7 @@ import { PrismaService } from 'src/core/database/prisma/prisma.service'
 @Injectable()
 export class UsersService {
   constructor(
-    private readonly prisma: PrismaService,
+    @Inject(ENHANCED_PRISMA) private readonly prisma: PrismaService,
     private readonly logger: PinoLogger,
   ) {
     this.logger.setContext(UsersService.name)
