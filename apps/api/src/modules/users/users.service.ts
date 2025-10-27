@@ -32,4 +32,34 @@ export class UsersService {
       throw error
     }
   }
+
+  async getCurrentUser(userId: string): Promise<User | null> {
+    try {
+      this.logger.info('Getting current user')
+      const user = await this.prisma.user.findUnique({
+        where: { id: userId },
+        include: {
+          folders: {
+            include: {
+              notes: true,
+            },
+          },
+        },
+      })
+      return user
+    } catch (error) {
+      if (error instanceof Error) {
+        this.logger.error(
+          { error: error.message, stack: error.stack },
+          'Failed to fetch current user',
+        )
+      } else {
+        this.logger.error('Failed to fetch current user', {
+          error: String(error),
+        })
+      }
+    }
+
+    return null
+  }
 }
