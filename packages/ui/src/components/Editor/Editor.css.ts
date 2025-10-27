@@ -11,6 +11,14 @@ globalStyle(`${editorBase} .tiptap`, {
   color: 'var(--color-foreground-primary)',
 })
 
+globalStyle(`${editorBase} .tiptap p.is-editor-empty:first-child::before`, {
+  color: 'var(--color-foreground-secondary)',
+  content: 'attr(data-placeholder)',
+  float: 'left',
+  height: 0,
+  pointerEvents: 'none',
+})
+
 globalStyle(`${editorBase} .ProseMirror-focused:focus-visible`, {
   outline: 'none',
 })

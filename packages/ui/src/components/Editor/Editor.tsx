@@ -3,6 +3,7 @@ import { TaskItem } from '@tiptap/extension-task-item'
 import { TaskList } from '@tiptap/extension-task-list'
 import { TextAlign } from '@tiptap/extension-text-align'
 import { TextStyle } from '@tiptap/extension-text-style'
+import { Placeholder } from '@tiptap/extensions'
 import { useEditor, EditorContent, EditorContext } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { useMemo } from 'react'
@@ -26,6 +27,9 @@ export const Editor = ({ onChange, initialContent }: EditorProps) => {
         heading: {
           levels: [1, 2],
         },
+      }),
+      Placeholder.configure({
+        placeholder: 'Write your note here...',
       }),
       TaskList,
       TaskItem.configure({ nested: true }),
