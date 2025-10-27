@@ -25,8 +25,6 @@ abstract model Base {
   updatedAt DateTime? @updatedAt
   deletedAt DateTime?
 
-  // TO DO: Add proper permissions
-  @@allow('all', true)
   @@deny('read', deletedAt != null)
 }
 
@@ -37,11 +35,13 @@ model User extends Base {
 
   notes           Note[]
   folders         Folder[]
+
+  @@allow('read,update', auth().id == id)
 }
 
 model Note extends Base {
   id              String @id @default(uuid())
-  title           String @unique
+  title           String
   content         String
 
   userId          String
@@ -49,6 +49,8 @@ model Note extends Base {
 
   folderId        String
   folder          Folder @relation(fields: [folderId], references: [id])
+
+  @@allow('all', auth().id == userId)
 
   @@index([userId])
   @@index([folderId])
@@ -63,6 +65,8 @@ model Folder extends Base {
   user            User   @relation(fields: [userId], references: [id])
 
   notes           Note[]
+
+  @@allow('all', auth().id == userId)
 
   @@index([userId])
   @@unique([userId, name])
