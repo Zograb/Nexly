@@ -1,4 +1,9 @@
-import { createFileRoute, Outlet, redirect } from '@tanstack/react-router'
+import {
+  createFileRoute,
+  Outlet,
+  redirect,
+  useRouteContext,
+} from '@tanstack/react-router'
 
 import { ScrollArea } from '@nexly/ui/components/ScrollArea/ScrollArea'
 import { ScrollBar } from '@nexly/ui/components/ScrollArea/ScrollBar'
@@ -14,9 +19,11 @@ export const Route = createFileRoute('/_protected')({
 })
 
 function RouteComponent() {
+  const { auth } = useRouteContext({ from: '/_protected' })
+
   return (
     <div className="flex h-screen">
-      <Sidebar />
+      <Sidebar user={auth.currentUser!} />
       <ScrollArea className="flex-1 bg-background">
         <div className="min-h-screen">
           <Outlet />

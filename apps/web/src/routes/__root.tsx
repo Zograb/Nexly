@@ -9,9 +9,9 @@ export const Route = createRootRouteWithContext<RouterContext>()({
 
 function RootComponent() {
   return (
-    <div>
+    <>
       <Outlet />
       <TanStackRouterDevtools position="bottom-right" />
-    </div>
+    </>
   )
 }

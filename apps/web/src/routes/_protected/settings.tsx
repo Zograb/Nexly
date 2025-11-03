@@ -14,7 +14,7 @@ function LayoutComponent() {
     <div className="py-10 px-5 container mx-auto">
       <Tabs defaultValue="account">
         <TabsList>
-          <TabsTrigger value="account" >Account</TabsTrigger>
+          <TabsTrigger value="account">Account</TabsTrigger>
           <TabsTrigger value="security">Preferences</TabsTrigger>
         </TabsList>
         <TabsContent value="account">

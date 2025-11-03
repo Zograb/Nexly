@@ -1,21 +1,23 @@
+import type { User } from 'src/hooks/useCurrentUser'
+
 import { useAuth } from '@clerk/clerk-react'
 import { useNavigate } from '@tanstack/react-router'
 import clsx from 'clsx'
 import { FileText, House, LogOut, Search, Settings } from 'lucide-react'
 
+import { Folder } from 'src/components/ui/Folder'
 import { NavLink } from 'src/components/ui/NavLink'
-import { useCurrentUser } from 'src/hooks/useCurrentUser'
 import { getUserInitials } from 'src/utils/helpers/getUserInitials'
 
-const notes = [
-  { id: '1', name: 'Note 1' },
-  { id: '2', name: 'Note 2' },
-]
+export interface SidebarProps {
+  user: User
+}
 
-export const Sidebar = () => {
+export const Sidebar = ({ user }: SidebarProps) => {
   const { signOut } = useAuth()
   const navigate = useNavigate()
-  const { user } = useCurrentUser()
+
+  const folders = user?.folders || []
 
   const logout = async () => {
     await signOut()
@@ -49,16 +51,23 @@ export const Sidebar = () => {
             </NavLink>
             <NavLink icon={<Search size={16} />}>Search</NavLink>
           </div>
-          <div className="flex flex-col gap-1 mt-14">
-            {notes.map((note) => (
-              <NavLink
-                key={note.id}
-                to={`/note/$noteId`}
-                params={{ noteId: note.id }}
-                icon={<FileText size={16} />}
-              >
-                {note.name}
-              </NavLink>
+          <div className="flex flex-col gap-2 mt-14">
+            {folders.map((folder) => (
+              <Folder key={folder.id} name={folder.name}>
+                <div className="w-full flex flex-col gap-1 py-1">
+                  {folder.notes?.map((note) => (
+                    <NavLink
+                      key={note.id}
+                      to={`/note/$noteId`}
+                      params={{ noteId: note.id }}
+                      icon={<FileText size={16} />}
+                      className="pl-4 pr-4 text-xs"
+                    >
+                      {note.title}
+                    </NavLink>
+                  ))}
+                </div>
+              </Folder>
             ))}
           </div>
         </div>

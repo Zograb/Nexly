@@ -1,32 +1,36 @@
-import type { User } from '@nexly/db/prisma'
-
-import { gql } from '@apollo/client'
 import { useQuery } from '@apollo/client/react'
 
-export interface UseCurrentUserResult {
-  user: User | null
-  loading: boolean
-}
+import { graphql } from 'src/graphql/generated/gql'
+import type { CurrentUserQuery } from 'src/graphql/generated/graphql'
 
-export function useCurrentUser(): UseCurrentUserResult {
-  const { data, loading } = useQuery<{ currentUser: User }>(gql`
-    query CurrentUser {
-      currentUser {
+const GET_CURRENT_USER = graphql(`
+  query CurrentUser {
+    currentUser {
+      id
+      email
+      preferredName
+      folders {
         id
-        email
-        preferredName
-        folders {
+        name
+        notes {
           id
-          name
-          notes {
-            id
-            title
-            content
-          }
+          title
+          content
         }
       }
     }
-  `)
+  }
+`)
+
+export type User = CurrentUserQuery['currentUser']
+
+export interface UseCurrentUserResult {
+  user: CurrentUserQuery['currentUser'] | null
+  loading: boolean
+}
+
+export function useCurrentUser(options?: useQuery.Options<CurrentUserQuery>): UseCurrentUserResult {
+  const { data, loading } = useQuery<CurrentUserQuery>(GET_CURRENT_USER, options)
 
   return {
     user: data?.currentUser || null,
