@@ -5,7 +5,7 @@ import { viteConfig } from '@nexly/eslint-config/vite'
 export default [
   ...viteConfig,
   {
-    ignores: ['**/routeTree.gen.ts'],
+    ignores: ['**/routeTree.gen.ts', '**/graphql/generated/**'],
   },
   {
     files: ['**/*.{ts,tsx}'],

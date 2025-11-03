@@ -8,7 +8,8 @@
     "build": "pnpm generate-routes && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "generate-routes": "tsr generate"
+    "generate-routes": "tsr generate",
+    "generate": "graphql-codegen --config client/codegen.ts"
   },
   "dependencies": {
     "@apollo/client": "^4.0.7",
@@ -26,9 +27,14 @@
     "tailwindcss": "^4.1.14"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^6.0.1",
+    "@graphql-codegen/client-preset": "^5.1.1",
+    "@graphql-codegen/typescript": "^5.0.2",
+    "@graphql-codegen/typescript-operations": "^5.0.2",
+    "@graphql-codegen/typescript-react-apollo": "^4.3.3",
+    "@nexly/db": "workspace:*",
     "@nexly/eslint-config": "workspace:*",
     "@nexly/typescript-config": "workspace:*",
-    "@nexly/db": "workspace:*",
     "@nexly/ui": "workspace:*",
     "@tanstack/router-cli": "^1.133.13",
     "@tanstack/router-plugin": "^1.133.13",
