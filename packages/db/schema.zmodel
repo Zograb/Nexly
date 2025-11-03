@@ -54,12 +54,11 @@ model Note extends Base {
 
   @@index([userId])
   @@index([folderId])
-  @@unique([userId, title])
 }
 
 model Folder extends Base {
   id              String @id @default(uuid())
-  name            String @unique
+  name            String
 
   userId          String
   user            User   @relation(fields: [userId], references: [id])
@@ -69,6 +68,5 @@ model Folder extends Base {
   @@allow('all', auth().id == userId)
 
   @@index([userId])
-  @@unique([userId, name])
 }
 
