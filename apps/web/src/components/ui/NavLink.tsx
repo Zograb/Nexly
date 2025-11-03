@@ -20,7 +20,7 @@ export const NavLink = ({
         {({ isActive }) => (
           <Button
             className={cn(
-              'w-full text-foreground-secondary',
+              'w-full text-foreground-secondary text-ellipsis overflow-hidden px-2',
               isActive && 'bg-primary text-foreground-primary',
               className,
             )}
@@ -34,7 +34,10 @@ export const NavLink = ({
   }
   return (
     <Button
-      className={cn('w-full text-foreground-secondary', className)}
+      className={cn(
+        'w-full text-foreground-secondary text-ellipsis px-2',
+        className,
+      )}
       size="md"
       variant="secondary"
       {...otherProps}
