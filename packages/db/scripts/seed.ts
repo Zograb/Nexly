@@ -31,22 +31,17 @@ const seedUsers = async (amount = 5) => {
   console.log(`Users seeded successfully: ${allUsers.length}`)
 }
 
-const seedFolders = async (amount = 3) => {
+const seedFolders = async () => {
   const users = await prisma.user.findMany()
-  const folders: Prisma.FolderCreateManyInput[] = []
   for (const user of users) {
-    for (let i = 0; i < amount; i++) {
-      folders.push({
-        name: faker.lorem.word(),
+    await prisma.folder.create({
+      data: {
+        name: 'personal',
         userId: user.id,
-      })
-    }
+      },
+    })
   }
-
-  await prisma.folder.createMany({
-    data: folders,
-  })
-  console.log(`Folders seeded successfully: ${folders.length}`)
+  console.log(`Folders seeded successfully: ${users.length}`)
 }
 
 const seedNotes = async (amount = 3) => {
