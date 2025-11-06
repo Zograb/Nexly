@@ -52,7 +52,7 @@ globalStyle(`${editorBase} .tiptap ul`, {
 
 globalStyle(`${editorBase} .tiptap ul[data-type="taskList"]`, {
   listStyleType: 'none',
-  paddingLeft: 25,
+  paddingLeft: 5,
 })
 
 globalStyle(`${editorBase} .tiptap ul[data-type="taskList"] li`, {

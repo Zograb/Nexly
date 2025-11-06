@@ -6,7 +6,7 @@ import { TextStyle } from '@tiptap/extension-text-style'
 import { Placeholder } from '@tiptap/extensions'
 import { useEditor, EditorContent, EditorContext } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import { useMemo } from 'react'
+import { useEffect, useMemo, memo } from 'react'
 
 import { BubbleMenu } from './components/BubbleMenu/BubbleMenu'
 import { FloatingMenu } from './components/FloatingMenu'
@@ -18,7 +18,7 @@ export interface EditorProps {
   initialContent?: string
 }
 
-export const Editor = ({ onChange, initialContent }: EditorProps) => {
+export const Editor = memo(({ onChange, initialContent }: EditorProps) => {
   const editor = useEditor({
     extensions: [
       TextStyle,
@@ -46,6 +46,10 @@ export const Editor = ({ onChange, initialContent }: EditorProps) => {
 
   const providerValue = useMemo(() => ({ editor }), [editor])
 
+  useEffect(() => {
+    editor.commands.setContent(initialContent ?? '')
+  }, [initialContent, editor])
+
   return (
     <EditorContext.Provider value={providerValue}>
       <EditorContent className={editorBase} editor={editor} />
@@ -53,4 +57,5 @@ export const Editor = ({ onChange, initialContent }: EditorProps) => {
       <BubbleMenu editor={editor} />
     </EditorContext.Provider>
   )
-}
+})
+Editor.displayName = 'Editor'
