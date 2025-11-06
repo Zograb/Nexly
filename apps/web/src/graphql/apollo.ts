@@ -26,5 +26,11 @@ const link = ApolloLink.from([
 
 export const apolloClient = new ApolloClient({
   link,
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Note: {
+        keyFields: ['id'],
+      },
+    },
+  }),
 })
