@@ -1,7 +1,8 @@
+import type { CurrentUserQuery } from 'src/graphql/generated/graphql'
+
 import { useQuery } from '@apollo/client/react'
 
 import { graphql } from 'src/graphql/generated/gql'
-import type { CurrentUserQuery } from 'src/graphql/generated/graphql'
 
 const GET_CURRENT_USER = graphql(`
   query CurrentUser {
@@ -29,8 +30,13 @@ export interface UseCurrentUserResult {
   loading: boolean
 }
 
-export function useCurrentUser(options?: useQuery.Options<CurrentUserQuery>): UseCurrentUserResult {
-  const { data, loading } = useQuery<CurrentUserQuery>(GET_CURRENT_USER, options)
+export function useCurrentUser(
+  options?: useQuery.Options<CurrentUserQuery>,
+): UseCurrentUserResult {
+  const { data, loading } = useQuery<CurrentUserQuery>(
+    GET_CURRENT_USER,
+    options,
+  )
 
   return {
     user: data?.currentUser || null,
