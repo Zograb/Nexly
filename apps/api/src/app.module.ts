@@ -21,6 +21,7 @@ import { DatabaseModule } from './core/database/database.module'
 import { PrismaModule } from './core/database/prisma/prisma.module'
 import { PrismaService } from './core/database/prisma/prisma.service'
 import { LoggerModule } from './core/logger/logger.module'
+import { NotesModule } from './modules/notes/notes.module'
 import { UsersModule } from './modules/users/users.module'
 
 @Module({
@@ -65,6 +66,7 @@ import { UsersModule } from './modules/users/users.module'
         },
       }),
     }),
+    NotesModule,
   ],
   controllers: [AppController],
   providers: [
