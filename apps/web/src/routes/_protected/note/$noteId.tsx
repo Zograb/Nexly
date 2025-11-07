@@ -25,7 +25,7 @@ function RouteComponent() {
 
   const { user } = useCurrentUser()
 
-  const [noteTitle, setNoteTitle] = useState('New Note 1')
+  const [noteTitle, setNoteTitle] = useState('New Note')
 
   const [updateNote] = useMutation<UpdateNoteMutation>(
     graphql(`

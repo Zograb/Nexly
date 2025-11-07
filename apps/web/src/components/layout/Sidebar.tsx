@@ -7,10 +7,22 @@ import { useMutation } from '@apollo/client/react'
 import { useAuth } from '@clerk/clerk-react'
 import { useNavigate } from '@tanstack/react-router'
 import clsx from 'clsx'
-import { FileText, House, LogOut, Search, Settings, Trash } from 'lucide-react'
+import {
+  EllipsisVertical,
+  FileText,
+  House,
+  LogOut,
+  PencilLine,
+  Search,
+  Settings,
+  Trash,
+} from 'lucide-react'
 import { useCallback } from 'react'
 
 import { Button } from '@nexly/ui/components/Button'
+import { Popover } from '@nexly/ui/components/Popover/Popover'
+import { PopoverContent } from '@nexly/ui/components/Popover/PopoverContent'
+import { PopoverTrigger } from '@nexly/ui/components/Popover/PopoverTrigger'
 import { Folder } from 'src/components/ui/Folder'
 import { NavLink } from 'src/components/ui/NavLink'
 import { graphql } from 'src/graphql/generated'
@@ -159,25 +171,53 @@ export const Sidebar = () => {
               >
                 <div className="w-full flex flex-col gap-1 py-1">
                   {folder.notes?.map((note) => (
-                    <div key={note.id} className="relative group">
-                      <NavLink
-                        to={`/note/$noteId`}
-                        params={{ noteId: note.id }}
-                        icon={<FileText size={16} />}
-                        className="pl-4 pr-4 text-xs"
-                      >
-                        {note.title}
-                      </NavLink>
-                      <div className="absolute right-0 top-0 h-full p-1 hidden group-hover:flex">
-                        <Button
-                          variant="secondary"
-                          size="icon"
-                          onClick={() => handleDeleteNote(note.id)}
+                    <Popover key={note.id}>
+                      <div className="relative group">
+                        <NavLink
+                          to={`/note/$noteId`}
+                          params={{ noteId: note.id }}
+                          icon={<FileText size={16} />}
+                          className="pl-4 pr-4 text-xs"
                         >
-                          <Trash className="text-error" size={16} />
-                        </Button>
+                          {note.title}
+                        </NavLink>
+                        <PopoverTrigger asChild>
+                          <Button
+                            variant="secondary"
+                            size="icon"
+                            // onClick={() => handleDeleteNote(note.id)}
+                            className="absolute right-1 top-1/2 -translate-y-1/2 invisible group-hover:visible"
+                          >
+                            <EllipsisVertical size={16} />
+                          </Button>
+                        </PopoverTrigger>
                       </div>
-                    </div>
+                      <PopoverContent
+                        className="w-40 p-1 ring-1 ring-foreground-border"
+                        sideOffset={2}
+                        align="start"
+                      >
+                        <div className="flex flex-col gap-1">
+                          <Button
+                            icon={<PencilLine size={10} />}
+                            variant="secondary"
+                            className="w-full"
+                            size="sm"
+                          >
+                            Edit
+                          </Button>
+                          <Button
+                            icon={<Trash size={10} />}
+                            variant="destructive"
+                            className="w-full"
+                            size="sm"
+                            onClick={() => handleDeleteNote(note.id)}
+                          >
+                            Delete
+                          </Button>
+                        </div>
+                      </PopoverContent>
+                    </Popover>
                   ))}
                 </div>
               </Folder>
