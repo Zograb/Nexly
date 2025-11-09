@@ -21,8 +21,10 @@ COPY apps/api ./apps/api
 # Install dependencies
 RUN pnpm install --frozen-lockfile
 
-# Generate Prisma and ZenStack
-RUN pnpm generate
+# Generate Prisma and ZenStack (requires DATABASE_URL env var, but doesn't connect)
+# Using a dummy URL since Prisma only validates format during generation
+ARG DATABASE_URL="postgresql://user:password@localhost:5432/db?schema=public"
+RUN DATABASE_URL=$DATABASE_URL pnpm generate
 
 # Build the API
 RUN pnpm --filter api build
