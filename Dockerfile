@@ -60,7 +60,7 @@ COPY --from=builder /app/apps/api/graphql ./apps/api/graphql
 ENV HUSKY=0
 
 # Install production dependencies only
-RUN pnpm install --prod --frozen-lockfile
+RUN pnpm install --prod --frozen-lockfile --ignore-scripts
 
 # Create non-root user
 RUN addgroup --system --gid 1001 nodejs && \
