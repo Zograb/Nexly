@@ -54,8 +54,6 @@ COPY --from=builder /app/apps/api/dist ./apps/api/dist
 COPY --from=builder /app/apps/api/graphql ./apps/api/graphql
 
 # Install production dependencies only
-# Set HUSKY=0 to skip git hooks but allow other install scripts (Prisma needs them)
-ENV HUSKY=0
 RUN pnpm install --prod --frozen-lockfile
 
 # Create non-root user
