@@ -21,10 +21,12 @@ COPY apps/api ./apps/api
 # Install dependencies
 RUN pnpm install --frozen-lockfile
 
-# Generate Prisma and ZenStack (requires DATABASE_URL env var, but doesn't connect)
-# Using a dummy URL since Prisma only validates format during generation
-ARG DATABASE_URL="postgresql://user:password@localhost:5432/db?schema=public"
-RUN DATABASE_URL=$DATABASE_URL pnpm generate
+# Generate Prisma and ZenStack
+# Note: Prisma requires DATABASE_URL env var for validation during generation
+# It doesn't actually connect to the database, just validates the URL format
+# The real DATABASE_URL will be provided at runtime via Cloud Run secrets
+ENV DATABASE_URL="postgresql://postgres:postgres@localhost:5432/nexly-db?schema=public"
+RUN pnpm generate
 
 # Build the API
 RUN pnpm --filter api build
