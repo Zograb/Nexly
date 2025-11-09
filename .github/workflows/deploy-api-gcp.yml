@@ -61,11 +61,12 @@ jobs:
             --platform managed \
             --allow-unauthenticated \
             --port 3001 \
-            --memory 512Mi \
+            --memory 1Gi \
             --cpu 1 \
             --min-instances 0 \
             --max-instances 10 \
             --timeout 300 \
+            --no-cpu-throttling \
             --service-account=nexly-api-runtime@${{ secrets.GCP_PROJECT_ID }}.iam.gserviceaccount.com \
             --set-env-vars="NODE_ENV=production" \
             --set-secrets="DATABASE_URL=DATABASE_URL:latest" \
@@ -79,6 +80,14 @@ jobs:
             --format 'value(status.url)')
           echo "Service deployed to: $SERVICE_URL"
           echo "SERVICE_URL=$SERVICE_URL" >> $GITHUB_OUTPUT
+      
+      - name: Show logs on failure
+        if: failure()
+        run: |
+          echo "📋 Recent logs from Cloud Run:"
+          gcloud run services logs read ${{ env.SERVICE_NAME }} \
+            --region ${{ env.REGION }} \
+            --limit 50
 
 
 
