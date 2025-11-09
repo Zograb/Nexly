@@ -60,7 +60,7 @@ COPY --from=builder /app/apps/api/graphql ./apps/api/graphql
 ENV HUSKY=0
 
 # Install production dependencies only
-RUN pnpm install --prod --frozen-lockfile --ignore-scripts
+RUN pnpm install --prod --frozen-lockfile
 
 # Create non-root user
 RUN addgroup --system --gid 1001 nodejs && \
@@ -71,6 +71,8 @@ USER nestjs
 
 # Set environment to production
 ENV NODE_ENV=production
+
+EXPOSE 3001
 
 # Start the application
 # NestJS builds to dist/src/main.js (not dist/main.js)
