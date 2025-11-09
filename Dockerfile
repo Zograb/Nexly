@@ -54,10 +54,9 @@ COPY --from=builder /app/apps/api/dist ./apps/api/dist
 COPY --from=builder /app/apps/api/graphql ./apps/api/graphql
 
 # Install production dependencies only
-# Use --ignore-scripts because:
-# 1. Prisma client is already generated and copied from builder stage
-# 2. We don't want husky (dev-only git hooks) to try to install
-RUN pnpm install --prod --frozen-lockfile --ignore-scripts
+# Set HUSKY=0 to skip git hooks but allow other install scripts (Prisma needs them)
+ENV HUSKY=0
+RUN pnpm install --prod --frozen-lockfile
 
 # Create non-root user
 RUN addgroup --system --gid 1001 nodejs && \
@@ -76,7 +75,8 @@ ENV NODE_ENV=production
 # The health check would use a hardcoded port which conflicts with Cloud Run's dynamic PORT
 
 # Start the application
-CMD ["node", "apps/api/dist/main.js"]
+# NestJS builds to dist/src/main.js (not dist/main.js)
+CMD ["node", "apps/api/dist/src/main.js"]
 
 
 
