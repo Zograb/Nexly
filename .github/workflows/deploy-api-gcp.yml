@@ -19,6 +19,7 @@ env:
 
 jobs:
   deploy:
+    name: Build & Deploy API to Google Cloud Run
     runs-on: ubuntu-latest
     
     permissions:
@@ -80,14 +81,6 @@ jobs:
             --format 'value(status.url)')
           echo "Service deployed to: $SERVICE_URL"
           echo "SERVICE_URL=$SERVICE_URL" >> $GITHUB_OUTPUT
-      
-      - name: Show logs on failure
-        if: failure()
-        run: |
-          echo "📋 Recent logs from Cloud Run:"
-          gcloud run services logs read ${{ env.SERVICE_NAME }} \
-            --region ${{ env.REGION }} \
-            --limit 50
 
 
 

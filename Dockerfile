@@ -65,14 +65,8 @@ RUN addgroup --system --gid 1001 nodejs && \
 
 USER nestjs
 
-# Expose the port
-EXPOSE 3001
-
 # Set environment to production
 ENV NODE_ENV=production
-
-# Note: Cloud Run has its own health checks, so we don't need HEALTHCHECK here
-# The health check would use a hardcoded port which conflicts with Cloud Run's dynamic PORT
 
 # Start the application
 # NestJS builds to dist/src/main.js (not dist/main.js)
