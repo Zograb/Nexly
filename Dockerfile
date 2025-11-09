@@ -56,6 +56,9 @@ COPY --from=builder /app/apps/api/package.json ./apps/api/
 COPY --from=builder /app/apps/api/dist ./apps/api/dist
 COPY --from=builder /app/apps/api/graphql ./apps/api/graphql
 
+# Disable Husky hooks in Docker
+ENV HUSKY=0
+
 # Install production dependencies only
 RUN pnpm install --prod --frozen-lockfile
 
