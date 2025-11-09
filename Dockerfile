@@ -21,12 +21,11 @@ COPY apps/api ./apps/api
 # Install dependencies
 RUN pnpm install --frozen-lockfile
 
-# Generate Prisma and ZenStack
-# Note: Prisma requires DATABASE_URL env var for validation during generation
-# It doesn't actually connect to the database, just validates the URL format
-# The real DATABASE_URL will be provided at runtime via Cloud Run secrets
+# Generate Prisma and ZenStack client only (skip schema generation that requires DB connection)
+# Note: We skip 'pnpm generate' because it tries to bootstrap NestJS and connect to DB
+# Instead, we only generate the Prisma client and let the app generate schema at runtime
 ENV DATABASE_URL="postgresql://postgres:postgres@localhost:5432/nexly-db?schema=public"
-RUN pnpm generate
+RUN pnpm --filter @nexly/db prisma:generate
 
 # Build the API
 RUN pnpm --filter api build
@@ -55,7 +54,10 @@ COPY --from=builder /app/apps/api/dist ./apps/api/dist
 COPY --from=builder /app/apps/api/graphql ./apps/api/graphql
 
 # Install production dependencies only
-RUN pnpm install --prod --frozen-lockfile
+# Use --ignore-scripts because:
+# 1. Prisma client is already generated and copied from builder stage
+# 2. We don't want husky (dev-only git hooks) to try to install
+RUN pnpm install --prod --frozen-lockfile --ignore-scripts
 
 # Create non-root user
 RUN addgroup --system --gid 1001 nodejs && \
