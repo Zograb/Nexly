@@ -50,6 +50,7 @@ COPY --from=builder /app/pnpm-lock.yaml ./
 COPY --from=builder /app/packages/db/package.json ./packages/db/
 COPY --from=builder /app/packages/db/generated ./packages/db/generated
 COPY --from=builder /app/packages/db/prisma ./packages/db/prisma
+COPY --from=builder /app/packages/db/schema.zmodel ./packages/db/
 
 # Copy API package
 COPY --from=builder /app/apps/api/package.json ./apps/api/
@@ -61,8 +62,6 @@ ENV HUSKY=0
 
 # Install production dependencies only
 RUN pnpm install --prod --frozen-lockfile
-
-RUN pnpm generate
 
 # Create non-root user
 RUN addgroup --system --gid 1001 nodejs && \
