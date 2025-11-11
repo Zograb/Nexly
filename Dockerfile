@@ -62,6 +62,8 @@ ENV HUSKY=0
 # Install production dependencies only
 RUN pnpm install --prod --frozen-lockfile
 
+RUN pnpm generate
+
 # Create non-root user
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nestjs && \
