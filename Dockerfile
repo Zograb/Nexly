@@ -47,10 +47,7 @@ COPY --from=builder /app/package.json ./
 COPY --from=builder /app/pnpm-lock.yaml ./
 
 # Copy packages (db with generated Prisma client)
-COPY --from=builder /app/packages/db/package.json ./packages/db/
-COPY --from=builder /app/packages/db/generated ./packages/db/generated
-COPY --from=builder /app/packages/db/prisma ./packages/db/prisma
-COPY --from=builder /app/packages/db/schema.zmodel ./packages/db/
+COPY --from=builder /app/packages/db ./packages/db
 
 # Copy API package
 COPY --from=builder /app/apps/api/package.json ./apps/api/
