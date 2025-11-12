@@ -24,7 +24,7 @@
     "graphql-type-json": "^0.3.2",
     "prisma-graphql-type-decimal": "^3.0.1",
     "prisma-nestjs-graphql": "^21.2.0",
-    "zenstack": "2.20.1"
+    "zenstack": "^2.21.1"
   },
   "devDependencies": {
     "@faker-js/faker": "^10.1.0",
