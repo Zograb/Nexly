@@ -61,9 +61,9 @@ ENV HUSKY=0
 RUN pnpm install --prod --frozen-lockfile
 
 # Generate ZenStack enhance function (creates files in node_modules/.zenstack)
-# Install zenstack temporarily, generate, then it will be in node_modules for runtime
+# zenstack is now a production dependency, so it's available here
 ENV DATABASE_URL="postgresql://postgres:postgres@localhost:5432/nexly-db?schema=public"
-RUN cd packages/db && pnpm add -D zenstack@2.20.1 && pnpm prisma:generate
+RUN pnpm --filter @nexly/db prisma:generate
 
 # Create non-root user
 RUN addgroup --system --gid 1001 nodejs && \
