@@ -28,7 +28,7 @@ jobs:
           - 5432:5432
     
     env:
-      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/nexly-db
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
       VITE_CLERK_PUBLISHABLE_KEY: ${{ secrets.CLERK_PUBLISHABLE_KEY }}
       VITE_API_URL: ${{ secrets.API_URL }}
     
