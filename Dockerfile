@@ -27,7 +27,6 @@ RUN pnpm install --frozen-lockfile
 # Generate Prisma and ZenStack client only (skip schema generation that requires DB connection)
 # Note: We skip 'pnpm generate' because it tries to bootstrap NestJS and connect to DB
 # Instead, we only generate the Prisma client and let the app generate schema at runtime
-ENV DATABASE_URL="postgresql://postgres:postgres@localhost:5432/nexly-db?schema=public"
 RUN pnpm --filter @nexly/db prisma:generate
 
 # Build the API
@@ -62,7 +61,6 @@ RUN pnpm install --prod --frozen-lockfile
 
 # Generate ZenStack enhance function (creates files in node_modules/.zenstack)
 # zenstack is now a production dependency, so it's available here
-ENV DATABASE_URL="postgresql://postgres:postgres@localhost:5432/nexly-db?schema=public"
 RUN pnpm --filter @nexly/db prisma:generate
 
 # Create non-root user
