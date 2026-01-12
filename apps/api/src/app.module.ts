@@ -55,7 +55,6 @@ import { UsersModule } from './modules/users/users.module'
       inject: [ConfigService, ClsService],
       useFactory: (configService: ConfigService, cls: ClsService) => ({
         graphiql: configService.get('NODE_ENV') === 'development',
-        autoSchemaFile: join(process.cwd(), 'graphql/schema.gql'),
         context: ({ req, res }: { req: Request; res: Response }) => {
           const user = cls.get<User>('user')
           return {
