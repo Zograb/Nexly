@@ -33,7 +33,7 @@ RUN pnpm generate
 RUN pnpm --filter api build
 
 # Production stage
-FROM node:22-alpine AS runner
+FROM node:24-alpine AS runner
 
 WORKDIR /app
 
@@ -76,7 +76,6 @@ ENV NODE_ENV=production
 EXPOSE 3001
 
 # Start the application
-# NestJS builds to dist/src/main.js (not dist/main.js)
 CMD ["node", "apps/api/dist/src/main.js"]
 
 
